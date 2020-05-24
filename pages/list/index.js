@@ -15,15 +15,18 @@ const useStyles = makeStyles({
     textAlign: "center",
     display: "flex",
     flexDirection: "row",
+    overflowX: "scroll",
   },
   card: {
-    maxWidth: 345,
+    minWidth: 400,
+    maxWidth: 450,
+    margin: "0 5px"
   },
   img: {
-    height: "200px",
+    width: "400px",
   },
   comment: {
-    width: "300px",
+    width: "350px",
   },
 })
 
@@ -67,7 +70,7 @@ const List = () => {
           />
           <img className={classes.img} src={d.idea_url.split('?').length === 1 ? d.idea_url : d.idea_url.split('?')[0]} />
           <CardContent>
-            <Typography paragraph>{`投票数：${d.count}`}</Typography>
+            <Typography paragraph>{`投票数：${d.count ?? 0}`}</Typography>
           </CardContent>
           <CardContent>
             <Typography paragraph>説明:</Typography>

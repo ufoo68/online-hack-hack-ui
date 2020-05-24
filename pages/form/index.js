@@ -23,7 +23,20 @@ const useStyles = makeStyles({
   },
   describe: {
     width: "70vw",
-  }
+    marginBottom: "5px",
+  },
+  inputFile: {
+    width: "50vw",
+    marginBottom: "5px",
+  },
+  inputTitle: {
+    width: "60vw",
+    marginBottom: "5px",
+  },
+  inputId: {
+    width: "30vw",
+    marginBottom: "5px",
+  },
 })
 
 const param = {
@@ -88,20 +101,20 @@ const Form = () => {
     <div className={classes.container}>
       <div>
         <div>ユーザーID</div>
-        <Input value={userId} onChange={(e) => {
+        <Input value={userId} className={classes.inputId} onChange={(e) => {
           setUserId(e.target.value)
         }} />
         <div>タイトル</div>
-        <Input value={title} onChange={(e) => {
+        <Input value={title}  className={classes.inputTitle} onChange={(e) => {
           setTitle(e.target.value)
         }} />
       </div>
       <div>
+        <div>アイデアスケッチ</div>
         <div className={classes.image}>
           <Image src={url} />
         </div>
-        <div>画像（URL）</div>
-        <Input type="file" onChange={async e => {
+        <Input type="file" className={classes.input} onChange={async e => {
           await getImageUrl(e.target.files)
         }} />
       </div>
@@ -112,12 +125,14 @@ const Form = () => {
         value={chips}
         onAdd={(chip) => setChips([chip, ...chips])}
         onDelete={(_, index) => setChips(chips.filter((_, i) => index !== i))}
+        className={classes.inputFile}
       />
       <div>ハッカソンでの役割</div>
       <ChipInput
         value={roles}
         onAdd={(role) => setRoles([role, ...roles])}
         onDelete={(_, index) => setRoles(roles.filter((_, i) => index !== i))}
+        className={classes.inputFile}
       />
       <div>
         <Button variant="contained" color="primary" disabled={!fillAll()} onClick={post}>
